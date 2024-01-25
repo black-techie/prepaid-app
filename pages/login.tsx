@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { NavigationProp} from '@react-navigation/native';
+import { useAuth } from '../components/AuthContext';
 
 type HomeScreenProps = {
   navigation: NavigationProp<any>;
@@ -21,6 +22,7 @@ const Login: React.FC<HomeScreenProps>  = ({navigation}) => {
   const [password, setPassword] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { signIn } = useAuth();
 
   const handleButtonClick = async () => {
     try {
@@ -46,7 +48,8 @@ const Login: React.FC<HomeScreenProps>  = ({navigation}) => {
       }
       if("token" in jsonData && "id" in jsonData){
           console.log("in here")
-          navigation.navigate("dashboard", {"data" : jsonData})
+          signIn(jsonData.token);
+          navigation.navigate("dashboard")
       } 
       console.log(jsonData)
     } catch (error: any) {
@@ -100,7 +103,7 @@ const Login: React.FC<HomeScreenProps>  = ({navigation}) => {
           secureTextEntry
           onChangeText={(text) => handlePassword(text)}
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onEndEditing={handleBlur}
           placeholder=" ***********"
         />
         <View style={{ height: "8%", width: "100%" }}></View>
@@ -167,6 +170,7 @@ const styles = StyleSheet.create({
   input: {
     height: "15%",
     width: "90%",
+    textAlign: 'center',
     borderColor: "gray",
     borderWidth: 1,
     paddingHorizontal: 10,

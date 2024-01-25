@@ -5,31 +5,49 @@ import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useAuth, AuthProvider } from "./components/AuthContext";
 
 const Stack = createNativeStackNavigator();
 const { StatusBarManager } = NativeModules;
 
-export default function App() {
+function MainApp() {
+  const { isAuthenticated } = useAuth();
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        {/* <SafeAreaView style={styles.container}> */}
-          <Stack.Screen name="login" component={Login} />
-          <Stack.Screen name="dashboard" component={Dashboard} />
-        {/* </SafeAreaView> */}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          {isAuthenticated() ? (
+            <Stack.Screen name="dashboard" component={Dashboard} />
+          ) : (
+            <Stack.Screen name="login" component={Login} />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
+
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBarManager.HEIGHT,
-    height: Dimensions.get("window").height,
+    height: Dimensions.get("window").height, //
     width: Dimensions.get("window").width,
     flexDirection: "column",
   },
 });
+
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <MainApp />
+    </AuthProvider>
+  );
+}
+
+

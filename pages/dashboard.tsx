@@ -1,20 +1,22 @@
-import { Text } from "react-native";
-import { NavigationProp, RouteProp } from "@react-navigation/native";
+import { Text, TouchableOpacity } from "react-native";
+import { NavigationProp } from "@react-navigation/native";
+import { useAuth } from '../components/AuthContext';
 
-type Data = {
-    id: String;
-    token: String;
-};
 
 type ProfileScreenProps = {
     navigation: NavigationProp<any>;
-    route: RouteProp<{ params: { data: Data } }, "params">;
 };
 
-const Dashboard: React.FC<ProfileScreenProps> = ({ navigation, route }) => {
+const Dashboard: React.FC<ProfileScreenProps> = ({ navigation }) => {
+    const { signOut } = useAuth()
     return (
         <>
-            <Text> Hello World {route.params.data.token} </Text>
+            <Text> Hello World! </Text>
+            <TouchableOpacity
+                onPress={() => { signOut() }}
+            >
+                <Text> Log out </Text>
+            </TouchableOpacity>
         </>
     );
 };
