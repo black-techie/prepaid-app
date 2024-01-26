@@ -35,7 +35,7 @@ function MainApp() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBarManager.HEIGHT,
-    height: Dimensions.get("window").height, //
+    height: "100%", //Dimensions.get("window").height
     width: Dimensions.get("window").width,
     flexDirection: "column",
   },
