@@ -33,18 +33,62 @@ const Dashboard: React.FC<ProfileScreenProps> = ({ navigation }) => {
                     <View style={styles.gridView}>
                         <View style={styles.rows}>
                             <TouchableOpacity style={styles.columns}>
-                                <Text>A</Text>
+                                <View style={styles.columnsA}>
+                                    {/* <Icon
+                                        name="users"
+                                        size={20}
+                                        color="black"
+                                        style={styles.historyViewRowAIcon}
+                                    /> */}
+                                </View>
+                                <View style={styles.columnsB}>
+                                    <Text style={styles.columnsLabel}>Users</Text>
+                                    <Text style={styles.columnsValue}>+480</Text>
+                                </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.columns}>
-                                <Text>B</Text>
+                                <View style={styles.columnsA}>
+                                    {/* <Icon
+                                        name="bitbucket"
+                                        size={20}
+                                        color="black"
+                                        style={styles.historyViewRowAIcon}
+                                    /> */}
+                                </View>
+                                <View style={styles.columnsB}>
+                                    <Text style={styles.columnsLabel}>Fetched</Text>
+                                    <Text style={styles.columnsValue}>+159</Text>
+                                </View>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.rows}>
                             <TouchableOpacity style={styles.columns}>
-                                <Text>C</Text>
+                                <View style={styles.columnsA}>
+                                    {/* <Icon
+                                        name="dollar"
+                                        size={20}
+                                        color="black"
+                                        style={styles.historyViewRowAIcon}
+                                    /> */}
+                                </View>
+                                <View style={styles.columnsB}>
+                                    <Text style={styles.columnsLabel}>Revenue (TZS)</Text>
+                                    <Text style={styles.columnsValue}>12,244,23.2</Text>
+                                </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.columns}>
-                                <Text>D</Text>
+                                <View style={styles.columnsA}>
+                                    {/* <Icon
+                                        name="refresh"
+                                        size={20}
+                                        color="black"
+                                        style={styles.historyViewRowAIcon}
+                                    /> */}
+                                </View>
+                                <View style={styles.columnsB}>
+                                    <Text style={styles.columnsLabel}>Production (m3)</Text>
+                                    <Text style={styles.columnsValue}>4,00.32</Text>
+                                </View>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -52,7 +96,7 @@ const Dashboard: React.FC<ProfileScreenProps> = ({ navigation }) => {
                         <TouchableOpacity style={styles.shortcutItems}>
                             <View style={styles.shortcutIcon}>
                                 <Icon
-                                    name="users"
+                                    name="user-plus"
                                     size={34}
                                     color="black"
                                 />
@@ -156,16 +200,16 @@ const Dashboard: React.FC<ProfileScreenProps> = ({ navigation }) => {
                         <Icon name="th-large" size={27} color="grey" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navigationViewColumns}>
-                        <Icon name="cog" size={30} color="grey" />
+                        <Icon name="bar-chart" size={27} color="grey" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navigationViewColumns}>
                         <Icon name="home" size={38} color="black" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navigationViewColumns}>
-                        <Icon name="bar-chart" size={27} color="grey" />
+                        <Icon name="bell" size={27} color="grey" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navigationViewColumns}>
-                        <Icon name="user" size={27} color="grey" />
+                        <Icon name="cog" size={27} color="grey" />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -226,12 +270,33 @@ const styles = StyleSheet.create({
     },
     columns: {
         height: "94%",
-        width: "48%",
-        alignItems: "center",
+        width: "49%",
         justifyContent: "center",
         borderColor: "silver",
-        borderWidth: 1,
+        borderWidth: .3,
         borderRadius: 10,
+        backgroundColor: "#F5F5F5"
+    },
+    columnsA: {
+        height: "0%",
+        width: "100%",
+        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    columnsB: {
+        height: "100%",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    columnsLabel: {
+        alignSelf: "center",
+        fontSize: 10,
+    },
+    columnsValue: {
+        fontSize: 24,
+        fontWeight: "800",
         alignSelf: "center",
     },
     shortcutView: {
@@ -358,7 +423,7 @@ const styles = StyleSheet.create({
         marginTop: "5%"
     },
     historyValueText: {
-        color: "green",
+        color: "#597E52",
         fontWeight: "500",
         fontSize: 18,
         height: "100%"
@@ -381,6 +446,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: "center",
         justifyContent: "flex-end",
+        paddingBottom: 2
 
     },
 });
